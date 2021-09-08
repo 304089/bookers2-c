@@ -14,6 +14,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @group_users = GroupUser.where(group_id: @group.id)
+
+
   end
 
   def index
