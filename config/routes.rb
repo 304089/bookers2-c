@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
+    resources :group_owners
     resource :group_user do
       member do
         post :join
