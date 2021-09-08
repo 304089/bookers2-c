@@ -21,18 +21,17 @@
         </td>
         <td>
           <% group_users.each do |group_user| %>
-            <div><%= group_user.user.name %></div>
+            <div id="user_name"><%= group_user.user.name %></div>
           <% end %>
         </td>
-        <td>
     <% if group.owner_id == current_user.id %>
-          <%= link_to "edit",edit_group_path(group.id),local: true,class: "btn btn-sm btn-success" %>
+        <td><%= link_to "edit",edit_group_path(group.id),local: true,class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to "Notice an Event",new_group_group_owner_path(group.id),local: true,class: "btn btn-sm btn-info" %></td>
     <% elsif GroupUser.find_by(user_id: current_user.id, group_id: group.id) %>
-          <%= link_to "leave this group",leave_group_group_user_path(group.id),method: :delete, local: true,class: "btn btn-sm btn-danger" %>
+        <td><%= link_to "leave this group",leave_group_group_user_path(group.id),method: :delete, local: true,class: "btn btn-sm btn-danger" %></td>
     <% else %>
-          <%= link_to "Join this group",join_group_group_user_path(group.id),method: :post, local: true,class: "btn btn-sm btn-success" %>
+        <td><%= link_to "Join this group",join_group_group_user_path(group.id),method: :post, local: true,class: "btn btn-sm btn-success" %></td>
     <% end %>
-        </td>
       </tr>
   </tbody>
 </table>
