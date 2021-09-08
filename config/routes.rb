@@ -16,6 +16,15 @@ Rails.application.routes.draw do
     resource :favorites,only: [:create,:destroy]
   end
 
-  resources :groups
+  resources :groups do
+    resource :group_user do
+      member do
+        post :join
+        delete :leave
+      end
+    end
+  end
+
+
 
 end

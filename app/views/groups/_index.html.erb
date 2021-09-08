@@ -22,8 +22,12 @@
           <%= group.introduction %>
         </td>
         <td>
-      <% if group.owner_id = current_user.id %>
+      <% if group.owner_id == current_user.id %>
           <%= link_to "edit",edit_group_path(group.id),local: true,class: "btn btn-sm btn-success" %>
+       <% elsif GroupUser.find_by(user_id: current_user.id, group_id: group.id) %>
+          <%= link_to "leave this group",leave_group_group_user_path(group.id),method: :delete, local: true,class: "btn btn-sm btn-danger" %>
+      <% else %>
+          <%= link_to "Join this group",join_group_group_user_path(group.id),method: :post, local: true,class: "btn btn-sm btn-success" %>
       <% end %>
         </td>
       </tr>

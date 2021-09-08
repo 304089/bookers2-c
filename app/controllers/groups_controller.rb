@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
   def create
     group = Group.new(group_params)
     group.owner_id = current_user.id
-    binding.pry
     group.save
     group_user = GroupUser.create(user_id: current_user.id,group_id: group.id)
     redirect_to groups_path
